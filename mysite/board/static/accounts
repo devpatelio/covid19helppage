@@ -1,0 +1,12 @@
+
+body{
+    background-color: black;
+}
+
+#helper{
+    color: blue;
+}
+
+h3{
+    color: white;
+}
