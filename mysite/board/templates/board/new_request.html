@@ -1,0 +1,87 @@
+{% load static %}
+
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a href="#" class="navbar-brand">Coronavirus Initiative</a>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+            <a href="#" class="nav-item nav-link ">About Us</a>
+            <a href="{% url 'home' %}"  class="nav-item nav-link">Explore Initiatives</a>
+            <a href="#" class="nav-item nav-link " tabindex="-1">Contact Us</a>
+        </div>
+        <div class="navbar-nav ml-auto">
+            <a href="{%url 'new_request'%}" class="nav-item nav-link">Create Request</a>
+            <a href="#" class="nav-item nav-link">Login</a>
+            {% if user %}
+                <a href="#" class="nav-item nav-link">{{user.first_name}} {{user.last_name}}</a>
+            {%endif%}
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+<ol class="breadcrumb my-4">
+
+    <li class="breadcrumb-item active "> <a href="{%url 'home'%}"> COVID-19 Dashboard </a></li>
+        <li class="breadcrumb-item active"> Create New Request </li>
+      </ol>
+</div>
+
+
+<form method="post" class="container">
+    <div> {% csrf_token %} </div>
+    <div class="form-group">
+        <label for="id_Title"> Name of Request</label>
+        <input type="text" class="form-control" id="id_Title" name="title">
+    </div>
+    <div class="form-group">
+            <label for="id_description"> Description of Event </label>
+            <input type="text" aria-rowspan="5" class="form-control" id="id_description" placeholder="Maximum of 800 Characters" name="description">
+    </div>
+    <div class="form-group">
+        <label for="id_eventdate"> Event Date </label>
+        <input type="date" class="form-control" id="id_eventdate" name="eventdate">
+    </div>
+    <div class="form-group">
+        <label for="id_eventaddress"> Event Address </label>
+        <input type="text" class="form-control" id="id_eventaddress" name="eventaddress">
+    </div>
+    <div class="form-group">
+        <label for="id_city"> Event City </label>
+        <input type="text" class="form-control" id="id_city" name="eventcity">
+    </div>
+    <div class="form-group">
+        <label for="id_contact"> Email </label>
+        <input type="email" class="form-control" id="id_contact" name="email">
+    </div>
+    <div class="form-group">
+        <label for="id_type"> Type of Event </label>
+        <select class="form-control" id="id_type" name="type">
+            <option value="Delivery">Delivery</option>
+            <option value="Fundraiser">Fundraiser</option>
+            <option value="Assistance">Assistance</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-success">Post Request</button>
+
+</form>
+
+
+
+
+</body>
+</html>
